@@ -1072,7 +1072,7 @@ Tagify.prototype = {
                 for( i=keys.length; i--; ){
                     var propName = keys[i];
                     if( propName != 'class' && !item.hasOwnProperty(propName) ) return;
-                    s += " " + propName + (item[propName] ? "=" + item[propName] : "");
+                    s += " " + propName + (item[propName] ? ("='" + item[propName] + "'") : "");
                 }
                 return s;
             }

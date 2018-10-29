@@ -1,9 +1,5 @@
 /**
-<<<<<<< HEAD
  * Tagify (v 2.6.4)- tags input component
-=======
- * Tagify (v 2.6.2)- tags input component
->>>>>>> 762d87768820469e8746b84554733b75ece596ba
  * By Yair Even-Or (2016)
  * Don't sell this code. (c)
  * https://github.com/yairEO/tagify
@@ -1047,7 +1043,7 @@ Tagify.prototype = {
         for (i = keys.length; i--;) {
           var propName = keys[i];
           if (propName != 'class' && !item.hasOwnProperty(propName)) return;
-          s += " " + propName + (item[propName] ? "=" + item[propName] : "");
+          s += " " + propName + (item[propName] ? "='" + item[propName] + "'" : "");
         }
 
         return s;
