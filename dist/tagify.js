@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * Tagify (v 2.6.4)- tags input component
+=======
+ * Tagify (v 2.6.2)- tags input component
+>>>>>>> 762d87768820469e8746b84554733b75ece596ba
  * By Yair Even-Or (2016)
  * Don't sell this code. (c)
  * https://github.com/yairEO/tagify
@@ -950,7 +954,7 @@ Tagify.prototype = {
 
             case 'Enter':
               e.preventDefault();
-              newValue = selectedElm ? selectedElm.textContent : this.input.value;
+              newValue = selectedElm ? selectedElm.getAttribute("value") : this.input.value;
               this.addTags(newValue, true);
               this.dropdown.hide.call(this);
               return false;
@@ -977,7 +981,7 @@ Tagify.prototype = {
           })[0];
 
           if (listItemElm) {
-            this.addTags(listItemElm.textContent, true);
+            this.addTags(listItemElm.getAttribute("value"), true);
             this.dropdown.hide.call(this);
           } // clicked outside the dropdown, so just close it
           else onClickOutside();
@@ -1030,7 +1034,8 @@ Tagify.prototype = {
      */
     createListHTML: function createListHTML(list) {
       var getItem = this.settings.dropdown.itemTemplate || function (item) {
-        return "<div class='tagify__dropdown__item " + (item.class ? item.class : "") + "' " + getAttributesString(item) + ">" + (item.value || item) + "</div>";
+        var attributes = typeof item == "string" ? "value='" + item + "'" : getAttributesString(item);
+        return "<div class='tagify__dropdown__item " + (item.class ? item.class : "") + "' " + attributes + ">" + (item.value || item) + "</div>";
       }; // for a certain Tag element, add attributes.
 
 

@@ -976,7 +976,7 @@ Tagify.prototype = {
                                 return false;
                         case 'Enter' :
                             e.preventDefault();
-                            newValue = selectedElm ? selectedElm.textContent : this.input.value;
+                            newValue = selectedElm ? selectedElm.getAttribute("value") : this.input.value;
                             this.addTags( newValue, true );
                             this.dropdown.hide.call(this);
                             return false;
@@ -1000,7 +1000,7 @@ Tagify.prototype = {
                     listItemElm = [e.target, e.target.parentNode].filter(a => a.className.includes("tagify__dropdown__item") )[0];
 
                     if( listItemElm ){
-                        this.addTags( listItemElm.textContent, true );
+                        this.addTags( listItemElm.getAttribute("value"), true );
                         this.dropdown.hide.call(this);
                     }
 
@@ -1062,7 +1062,8 @@ Tagify.prototype = {
          */
         createListHTML(list){
             var getItem = this.settings.dropdown.itemTemplate || function(item){
-                return `<div class='tagify__dropdown__item ${item.class ? item.class : ""}' ${getAttributesString(item)}>${item.value || item}</div>`;
+                var attributes = typeof item == "string" ? `value='${item}'` : getAttributesString(item);
+                return `<div class='tagify__dropdown__item ${item.class ? item.class : ""}' ${attributes}>${item.value || item}</div>`;
             };
 
             // for a certain Tag element, add attributes.
