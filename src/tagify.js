@@ -490,7 +490,7 @@ Tagify.prototype = {
     getTagIndexByValue( value ){
         var result = [];
         this.DOM.scope.querySelectorAll('tag').forEach((tagElm, i) => {
-            if( tagElm.textContent.trim().toLowerCase() == value.toLowerCase() )
+            if( tagElm.getAttribute("value").trim().toLowerCase() == value.toLowerCase() )
                 result.push(i)
         })
         return result;
@@ -805,7 +805,7 @@ Tagify.prototype = {
 
         var _this = this,
             tagData,
-            tagIdx = this.getTagIndexByValue(tagElm.textContent); //this.getNodeIndex(tagElm); (getNodeIndex is unreliable)
+            tagIdx = this.getTagIndexByValue(tagElm.getAttribute("value")); //this.getNodeIndex(tagElm); (getNodeIndex is unreliable)
 
         if( tranDuration && tranDuration > 10 )  animation()
         else removeNode();
