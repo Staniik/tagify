@@ -495,7 +495,7 @@
     getTagIndexByValue: function getTagIndexByValue(value) {
       var result = [];
       this.DOM.scope.querySelectorAll('tag').forEach(function (tagElm, i) {
-        if (tagElm.textContent.trim().toLowerCase() == value.toLowerCase()) result.push(i);
+        if (tagElm.getAttribute("value").trim().toLowerCase() == value.toLowerCase()) result.push(i);
       });
       return result;
     },
@@ -792,7 +792,7 @@
 
       var _this = this,
           tagData,
-          tagIdx = this.getTagIndexByValue(tagElm.textContent); //this.getNodeIndex(tagElm); (getNodeIndex is unreliable)
+          tagIdx = this.getTagIndexByValue(tagElm.getAttribute("value")); //this.getNodeIndex(tagElm); (getNodeIndex is unreliable)
 
 
       if (tranDuration && tranDuration > 10) animation();else removeNode();
