@@ -996,8 +996,27 @@ Tagify.prototype = {
 
                     if( e.button != 0 ) return; // allow only mouse left-clicks
                     if( e.target == document.documentElement ) return onClickOutside();
+                    
+                    ////////////// Anything BEGIN
+                    function collectionHas(a, b) {
+                        for (var i = 0, len = a.length; i < len; i++) {
+                            if (a[i] == b) return true;
+                        }
+                        return false;
+                    }
 
-                    listItemElm = [e.target, e.target.parentNode].filter(a => a.className.includes("tagify__dropdown__item") )[0];
+                    function findParentBySelector(elm, selector) {
+                        var all = document.querySelectorAll(selector);
+                        var cur = elm.parentNode;
+                        while (cur && !collectionHas(all, cur)) {
+                            cur = cur.parentNode;
+                        }
+                        return cur;
+                    }
+
+                    const parent = findParentBySelector(e.target, ".tagify__dropdown__item")
+                    ///////////// Anything END
+                    listItemElm = [e.target, parent ? parent : e.target.parentNode].filter(a => a.className.includes("tagify__dropdown__item") )[0];
 
                     if( listItemElm ){
                         this.addTags( listItemElm.getAttribute("value"), true );
